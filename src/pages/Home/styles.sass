@@ -1,0 +1,149 @@
+$font-color: ("title": #fff, "text": #f0f0f0)
+
+@function text_color($font_type)
+  @return map-get($font-color, $font_type)
+
+@mixin flex_center($flex_direction)
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: $flex_direction
+  
+
+section
+  position: relative
+  width: 100%
+  min-height: 100vh
+  background: url('./../../assets/bg.jpg')
+  background-size: cover
+
+header 
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: 16px 32px
+  height: 67px
+  background-color: #ffffff20
+  z-index: 10
+
+  h1 
+    color: text-color("title")
+    font-weight: 400
+
+  div
+    display: flex
+    flex-direction: column
+    justify-content: center
+    cursor: pointer
+    width: 30px
+    height: 32px
+
+    .closeMenu
+      display: flex
+      width: 100%
+      height: 2px
+      background-color: #fff
+      transform: rotatez(45deg)
+      transition: 0.7s
+
+      &::before 
+        content: ''
+        display: flex
+        width: 0
+        height: 0px
+        margin-bottom: 0px
+        background-color: #fff
+        opacity: 0
+
+      &::after 
+        content: ''
+        display: flex
+        width: 100%
+        height: 2px
+        margin-top: 0px
+        background-color: #fff
+        transition: 0.7s
+        transform: rotatez(270deg)
+
+    // end of closeMenu
+
+    .openMenu
+      display: flex
+      width: 100%
+      height: 2px
+      background-color: #fff
+      border-radius: 8px
+      transition: 0.7s
+
+      &::before 
+        content: ''
+        display: flex
+        width: 100%
+        height: 2px
+        margin-bottom: 8px
+        background-color: #fff
+
+      &::after 
+        content: ''
+        display: flex
+        width: 20px
+        height: 2px
+        margin-top: 8px
+        background-color: #fff
+        transition: 0.7s
+
+.content
+  width: 100%
+  height: calc(100vh - 67px)
+  @include flex_center(column)
+  padding: 16px 32px
+
+  #{&}_contacts
+    position: absolute
+    @include flex_center(column)
+    justify-content: space-evenly
+    right: 0
+    height: 160px
+    width: 44px
+    background-color: #f0f0f0
+
+    img
+      width: 25px
+      height: auto
+      cursor: pointer
+
+  h1
+    color: text-color("title")
+    font-weight: 600
+    font-size: 32px
+
+  button
+    border: 0
+    border-radius: 16px
+    padding: 16px 40px
+    max-width: 280px
+    width: 100%
+    background-color: #ffffff30
+    margin-top: 32px
+    color: #fff
+    transition: 0.2s
+
+    &:hover
+      background-color: #ffffff70
+
+main
+  display: flex
+
+aside
+  position: relative
+  @include flex_center(row)
+  top: 0
+  left: 0
+  width: 0px
+  height: 100vh
+  background-color: #f0f0f0
+  transition: 0.2s
+  overflow: hidden
+
+.isOpen
+  width: 280px
